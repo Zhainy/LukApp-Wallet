@@ -1,5 +1,6 @@
 import { obtenerSaldo, guardarSaldo, saldoActualizado } from "./saldo.js";
 import { obtenerContactos, agregarNuevoContacto } from "./contactos.js";
+import { registrarTransaccion } from "./transacciones.js";
 
 let transaccionPendiente = null;
 
@@ -163,7 +164,7 @@ function confirmarTransaccion() {
 
     guardarSaldo(saldoActual);
     saldoActualizado();
-
+    registrarTransaccion('egreso', `Envío a ${transaccionPendiente.nombre}`, transaccionPendiente.monto);
     $(transaccionPendiente.inputId).val('');
     $('#modalConfirmacion').modal('hide');
 
