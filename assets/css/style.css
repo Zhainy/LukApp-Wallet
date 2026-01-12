@@ -74,6 +74,24 @@ h1 {
     font-weight: 600;
     transition: all 0.3s ease-in-out;
 }
+.btn-sm {
+    padding: .1rem .5rem !important;
+    font-size: .7rem !important;
+    color: #8647cf !important;
+    border: 1px solid #8647cf !important;
+    background-color: transparent !important;
+    border-radius: 5px !important;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+.btn-sm:hover,
+.btn-sm:active,
+.btn-sm:focus {
+    background-color: #8647cf !important;
+    color: #ffffff !important;
+    border-color: #8647cf !important;
+    text-decoration: none !important; 
+}
 /* Estado Hover (Mouse encima) y Active (Click) */
 .btn-luka:hover, 
 .btn-luka:active,
@@ -87,6 +105,12 @@ h1 {
 /* Arreglar el "anillo" de brillo azul que pone Bootstrap al hacer click */
 .btn-luka:focus {
     box-shadow: 0 0 0 0.2rem rgba(134, 71, 207, 0.4) !important;
+}
+.blur-text {
+    filter: blur(6px);
+    user-select: none;
+    pointer-events: none;
+    transition: filter 0.4s ease;
 }
 .contact-name {
     font-weight: 600;

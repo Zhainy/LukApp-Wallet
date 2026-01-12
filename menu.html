@@ -46,7 +46,7 @@
                 <p class="h2 fs-1 fw-bold" id="saldo">$120.000</p>
               </div>
               <div class="card-footer pt-1 pb-0 border-top border-primary-subtle text-">
-                <p class="blockquote-footer text-success text-right"> ▲ 20%</p>
+                <p class="blockquote-footer text-success text-right" id="indicador-variacion"> </p>
               </div>
             </div>
           </div>
@@ -56,14 +56,17 @@
                 <img src="assets/img/credit-card.svg" alt="Ícono de tarjeta de crédito" width="24" height="24">
               </div>
               <div class="card-body py-1">
-                <p class="card-text text-muted initialism">5456 1115 3459 4556</p>
+                <p class="card-text text-muted initialism blur-text" id="numero-tarjeta">5456 1115 3459 4556</p>
 
                 <div class="d-flex justify-content-between align-content-between">
                   <div class="d-flex flex-wrap align-items-start">
-                    <p class="text-muted text-uppercase credit-card-info"> Nicole Fernández </p>
-                    <p class="text-muted credit-card-info d-inline-block"> Vence 12/27 </p>
+                    <p class="text-muted text-uppercase credit-card-info blur-text" id="titular-tarjeta"> Nicole Fernández </p>
+                    <p class="text-muted credit-card-info d-inline-block blur-text" id="vencimiento-tarjeta"> Vence 12/27 </p>
                   </div>
-                  <img src="assets/img/Mastercard-Logo.wine.svg" alt="Icono de Mastercard" width="40" height="24" class="d-inline-block">
+                  <div class="d-flex flex-wrap justify-content-end align-items-baseline align-top position-relative" style="top: -3px;">
+                    <img src="assets/img/Mastercard-Logo.wine.svg" alt="Icono de Mastercard" width="40" height="24" class="d-inline-blockv credit-card-logo blur-text">
+                    <button class="btn btn-sm btn-luka--sm" id="btnMostrarDatos" onclick="mostrarDatosTarjeta()"> Mostrar</button>
+                  </div>
                 </div>
                 
 
