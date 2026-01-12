@@ -117,9 +117,22 @@ Este proyecto no requiere instalación de dependencias de servidor (Node.js, etc
 
    > **Nota:** No es necesario instalar dependencias ni iniciar un servidor local (como Live Server), aunque puedes usarlo si deseas una experiencia de desarrollo más fluida.
 
-   ## 🔐 Credenciales de Prueba
+## 🔐 Credenciales de Prueba
 
 Para probar la funcionalidad de inicio de sesión (Login), puedes utilizar las siguientes credenciales genéricas:
 
 * **Usuario/Correo:** Cualquier correo que termine en `@admin.com` (ej: `test@admin.com`, `admin@admin.com`).
 * **Contraseña:** `1234`
+
+---
+
+## 👩‍💻 Autora
+
+**Nicole Fernández**
+
+* [Perfil de GitHub](https://github.com/Zhainy)
+* Desarrollado como parte del Bootcamp de Desarrollo Full Stack.
+
+---
+
+*Hecho con 💜 y mucho código.*
