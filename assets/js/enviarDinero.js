@@ -7,33 +7,41 @@ let transaccionPendiente = null;
 export function iniciarGestorDeTransferencias() {
     extraerContactos();
     saldoActualizado();
-    $('#btn-confirmar-envio').off('click').on('click', confirmarTransaccion);
-    $('#btn-guardar-contacto').off('click').on('click', guardarContactoUsuario);
-    $('#searchContact').on('keyup', function() {
+    $("#btn-confirmar-envio").off("click").on("click", confirmarTransaccion);
+    $("#btn-guardar-contacto").off("click").on("click", guardarContactoUsuario);
+    $("#searchContact").on("keyup", function () {
         const terminoBusqueda = $(this).val().toLowerCase();
         const todosLosContactos = obtenerContactos();
-        const contactosFiltrados = todosLosContactos.filter(contacto => {
-            return contacto.nombre.toLowerCase().includes(terminoBusqueda) || 
-                   contacto.alias.toLowerCase().includes(terminoBusqueda);
+        const contactosFiltrados = todosLosContactos.filter((contacto) => {
+            return (
+                contacto.nombre.toLowerCase().includes(terminoBusqueda) ||
+                contacto.alias.toLowerCase().includes(terminoBusqueda)
+            );
         });
         extraerContactos(contactosFiltrados);
     });
 }
 
 function guardarContactoUsuario() {
-const nombre = $('#nuevo-nombre').val().trim();
-    const cuenta = $('#nuevo-cbu').val().trim(); 
-    const alias = $('#nuevo-alias').val().trim();
-    const banco = $('#nuevo-banco').val();
-    const tipoCuenta = $('#nuevo-tipoCuenta').val(); 
+    const nombre = $("#nuevo-nombre").val().trim();
+    const cuenta = $("#nuevo-cbu").val().trim();
+    const alias = $("#nuevo-alias").val().trim();
+    const banco = $("#nuevo-banco").val();
+    const tipoCuenta = $("#nuevo-tipoCuenta").val();
 
-    const alertBox = $('#contacto-alert');
+    const alertBox = $("#contacto-alert");
 
-    alertBox.addClass('d-none').removeClass('alert-danger alert-success');
+    alertBox.addClass("d-none").removeClass("alert-danger alert-success");
 
-    if (nombre === "" || cuenta === "" || alias === "" || banco === "" || tipoCuenta === "") {
-        alertBox.removeClass('d-none').addClass('alert-danger');
-        alertBox.text('Por favor complete todos los campos.');
+    if (
+        nombre === "" ||
+        cuenta === "" ||
+        alias === "" ||
+        banco === "" ||
+        tipoCuenta === ""
+    ) {
+        alertBox.removeClass("d-none").addClass("alert-danger");
+        alertBox.text("Por favor complete todos los campos.");
         return;
     }
 
@@ -41,24 +49,26 @@ const nombre = $('#nuevo-nombre').val().trim();
         nombre: nombre,
         alias: alias,
         banco: banco,
-        cuenta: cuenta,         
-        tipoCuenta: tipoCuenta  
+        cuenta: cuenta,
+        tipoCuenta: tipoCuenta,
     };
     agregarNuevoContacto(nuevo);
-    alertBox.removeClass('d-none alert-danger').addClass('alert-success');
-    alertBox.text('Contacto guardado con éxito.');
+    alertBox.removeClass("d-none alert-danger").addClass("alert-success");
+    alertBox.text("Contacto guardado con éxito.");
     extraerContactos();
-    $('#modalNuevoContacto').modal('hide');
-    $('#form-nuevo-contacto')[0].reset();
+    $("#modalNuevoContacto").modal("hide");
+    $("#form-nuevo-contacto")[0].reset();
 }
 
 export function extraerContactos(listaParaMostrar = null) {
-    let contenedor = $('#listaContactosAccordion');
-       
+    let contenedor = $("#listaContactosAccordion");
+
     contenedor.empty();
     const lista = listaParaMostrar || obtenerContactos();
     if (lista.length === 0) {
-        contenedor.html('<div class="alert alert-warning text-center">No se encontraron contactos.</div>');
+        contenedor.html(
+            '<div class="alert alert-warning text-center">No se encontraron contactos.</div>'
+        );
         return;
     }
     lista.forEach((contacto, index) => {
@@ -122,27 +132,30 @@ export function extraerContactos(listaParaMostrar = null) {
         contenedor.append(itemHTML);
     });
 }
-function irHaciaAlerta(){
-    let posicionAlerta = $('#transfer-alert').offset().top;
-    $('html, body').animate({
-        scrollTop: posicionAlerta - 100
-    }, 600);
+function irHaciaAlerta() {
+    let posicionAlerta = $("#transfer-alert").offset().top;
+    $("html, body").animate(
+        {
+            scrollTop: posicionAlerta - 100,
+        },
+        600
+    );
 }
-window.prepararTransferencia = function(index, nombreContacto) {
+window.prepararTransferencia = function (index, nombreContacto) {
     const inputMonto = $(`#monto-${index}`);
     const monto = parseFloat(inputMonto.val());
     const saldoDisponible = obtenerSaldo();
-    let alertBox = $('#transfer-alert');
-    alertBox.addClass('d-none').removeClass('alert-danger alert-success');
+    let alertBox = $("#transfer-alert");
+    alertBox.addClass("d-none").removeClass("alert-danger alert-success");
 
     if (isNaN(monto) || monto <= 0) {
-        alertBox.removeClass('d-none').addClass('alert-danger');
-        alertBox.text('Por favor, ingresa un monto válido para transferir.');
+        alertBox.removeClass("d-none").addClass("alert-danger");
+        alertBox.text("Por favor, ingresa un monto válido para transferir.");
         irHaciaAlerta();
         return;
     }
     if (monto > saldoDisponible) {
-        alertBox.removeClass('d-none').addClass('alert-danger');
+        alertBox.removeClass("d-none").addClass("alert-danger");
         alertBox.text(`Fondos insuficientes. Tu saldo es $${saldoDisponible}`);
         irHaciaAlerta();
         return;
@@ -150,24 +163,24 @@ window.prepararTransferencia = function(index, nombreContacto) {
     transaccionPendiente = {
         monto: monto,
         nombre: nombreContacto,
-        inputId: `#monto-${index}`
+        inputId: `#monto-${index}`,
     };
-    $('#modal-nombre').text(nombreContacto);
-    $('#modal-monto').text(`$ ${monto}`);
-    $('#modalConfirmacion').modal('show');
+    $("#modal-nombre").text(nombreContacto);
+    $("#modal-monto").text(`$ ${monto}`);
+    $("#modalConfirmacion").modal("show");
 };
-window.eliminarContacto = function(index, nombreContacto) {
+window.eliminarContacto = function (index, nombreContacto) {
     let lista = obtenerContactos();
     lista.splice(index, 1);
-    localStorage.setItem('listaContactos', JSON.stringify(lista));
+    localStorage.setItem("listaContactos", JSON.stringify(lista));
     extraerContactos();
-    let alertBox = $('#transfer-alert');
-    alertBox.removeClass('d-none alert-danger').addClass('alert-success');
+    let alertBox = $("#transfer-alert");
+    alertBox.removeClass("d-none alert-danger").addClass("alert-success");
     alertBox.text(`Contacto ${nombreContacto} eliminado con éxito.`);
     setTimeout(() => {
-        irHaciaAlerta(); 
+        irHaciaAlerta();
     }, 300);
-}
+};
 
 function confirmarTransaccion() {
     if (!transaccionPendiente) return;
@@ -177,15 +190,21 @@ function confirmarTransaccion() {
 
     guardarSaldo(saldoActual);
     saldoActualizado();
-    registrarTransaccion('egreso', `Envío a ${transaccionPendiente.nombre}`, transaccionPendiente.monto);
-    $(transaccionPendiente.inputId).val('');
-    $('#modalConfirmacion').modal('hide');
+    registrarTransaccion(
+        "egreso",
+        `Envío a ${transaccionPendiente.nombre}`,
+        transaccionPendiente.monto
+    );
+    $(transaccionPendiente.inputId).val("");
+    $("#modalConfirmacion").modal("hide");
 
-    let alertBox = $('#transfer-alert');
-    alertBox.removeClass('d-none alert-danger').addClass('alert-success');
-    alertBox.text(`Transferencia de $${transaccionPendiente.monto} a ${transaccionPendiente.nombre} realizada con éxito.`);
+    let alertBox = $("#transfer-alert");
+    alertBox.removeClass("d-none alert-danger").addClass("alert-success");
+    alertBox.text(
+        `Transferencia de $${transaccionPendiente.monto} a ${transaccionPendiente.nombre} realizada con éxito.`
+    );
     setTimeout(() => {
-        irHaciaAlerta(); 
+        irHaciaAlerta();
     }, 300);
     transaccionPendiente = null;
 }

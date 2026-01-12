@@ -95,7 +95,7 @@ L4/
 |:---:|:---:|
 | <img src="assets/img/preview (1).png" alt="Escritorio 1" width="400"> | <img src="assets/img/preview (3).png" alt="Móvil 1" width="200"> |
 | <img src="assets/img/preview (2).png" alt="Escritorio 2" width="400"> | <img src="assets/img/preview (4).png" alt="Móvil 2" width="200"> |
-| | <img src="assets/img/preview (5).png" alt="Móvil 3" width="200"> |
+| <img src="assets/img/preview (6).png" alt="Escritorio 2" width="400"> | <img src="assets/img/preview (5).png" alt="Móvil 3" width="200"> |
 
 ---
 

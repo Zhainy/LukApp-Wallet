@@ -17,15 +17,15 @@ export function obtenerTransacciones() {
 
 export function registrarTransaccion(tipo, descripcion, monto) {
     let historial = obtenerTransacciones();
-    
+
     const nuevoMovimiento = {
         tipo: tipo,
         descripcion: descripcion,
         monto: monto,
-        fecha: new Date().toLocaleDateString('es-CL') 
+        fecha: new Date().toLocaleDateString('es-CL')
     };
 
     historial.unshift(nuevoMovimiento);
-    
+
     localStorage.setItem('historialTransacciones', JSON.stringify(historial));
 }

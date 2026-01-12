@@ -1,154 +1,282 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">    <title>Wallet</title>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-bg-custom">
-  <a class="navbar-brand" href="#">
-    <img src="assets/img/lukapp-logo3.png" height="48" class="d-inline-block align-top" alt="">
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="deposit.html">Depositar</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="sendmoney.html">Enviar Dinero</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="transactions.html">Transacciones</a>
-      </li>
-            </li>
-            <li class="nav-item">
-        <a class="nav-link" href="login.html">Login</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-<main class="container mx-auto p-4 shadow p-3 my-5 bg-white rounded" style="max-width: 500px;">
-    <h2 class="my-4 pb-2 border-bottom border-primary-subtle">Enviar Dinero</h2>
-    
-    <div class="alert alert-info text-center">
-        <h3 class = "h5">Tu Saldo: <span id="saldo">0</span></h3>
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+    <title>Wallet</title>
+    <link
+      rel="shortcut icon"
+      href="assets/img/lukapp-icono.png"
+      type="image/x-icon"
+    />
+    <title>LukApp Wallet</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-bg-custom">
+      <a class="navbar-brand" href="#">
+        <img
+          src="assets/img/lukapp-logo3.png"
+          height="48"
+          class="d-inline-block align-top"
+          alt=""
+        />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="deposit.html">Depositar</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sendmoney.html">Enviar Dinero</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="transactions.html">Transacciones</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main
+      class="container mx-auto p-4 shadow p-3 my-5 bg-white rounded"
+      style="max-width: 500px"
+    >
+      <h2 class="my-4 pb-2 border-bottom border-primary-subtle">
+        Enviar Dinero
+      </h2>
 
-    <div class="modal fade" id="modalConfirmacion" tabindex="-1" role="dialog">
+      <div class="alert alert-info text-center">
+        <h3 class="h5">Tu Saldo: <span id="saldo">0</span></h3>
+      </div>
+
+      <div
+        class="modal fade"
+        id="modalConfirmacion"
+        tabindex="-1"
+        role="dialog"
+      >
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Confirmar Transacción</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>¿Estás seguro que deseas transferir esta cantidad?</p>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Destinatario: <strong id="modal-nombre"></strong></li>
-                        <li class="list-group-item">Monto: <strong id="modal-monto"></strong></li>
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success" id="btn-confirmar-envio">Confirmar y Enviar</button>
-                </div>
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Confirmar Transacción</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
+            <div class="modal-body">
+              <p>¿Estás seguro que deseas transferir esta cantidad?</p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  Destinatario: <strong id="modal-nombre"></strong>
+                </li>
+                <li class="list-group-item">
+                  Monto: <strong id="modal-monto"></strong>
+                </li>
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                class="btn btn-success"
+                id="btn-confirmar-envio"
+              >
+                Confirmar y Enviar
+              </button>
+            </div>
+          </div>
         </div>
-    </div>
-
-    <div class="alert alert-success d-none" role="alert" id="transfer-alert"></div>
-        
-
-    <div class="form-group mb-3">
-        <label for="searchContact">Buscar en la agenda de transferencias:</label>
-        <input type="text" class="form-control" id="searchContact" placeholder="Search contact">
-    </div>
-    
-    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#modalNuevoContacto">Agregar nuevo contacto</button>
-
-    <h3 class="my-3">Contactos</h3>
-    
-    <div class="accordion" id="listaContactosAccordion"></div>
-
-    <div class="form-group my-3 d-flex flex-column flex-md-row">
-        <a href="menu.html" class="btn btn-luka mb-2 mb-md-0 mr-md-2">Volver al Menú Principal</a>
-    </div>
-    <div class="modal fade" id="modalNuevoContacto" tabindex="-1" role="dialog" aria-labelledby="modalNuevoContactoLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalNuevoContactoLabel">Nuevo Contacto</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
-      <div class="modal-body">
-        
-        <div id="contacto-alert" class="alert d-none" role="alert"></div>
 
-        <form id="form-nuevo-contacto">
-          <div class="form-group">
-            <label for="nuevo-nombre">Nombre Completo</label>
-            <input type="text" class="form-control" id="nuevo-nombre" required>
-          </div>
-          <div class="form-group">
-            <label for="nuevo-alias">Alias</label>
-            <input type="text" class="form-control" id="nuevo-alias" required>
-          </div>
-          <div class="form-group">
-            <label for="nuevo-banco">Banco</label>
-            <select class="form-control" id="nuevo-banco">
-                <option value="">Seleccione...</option> <option>Banco Estado</option>
-                <option>Banco Santander</option>
-                <option>Banco Falabella</option>
-                <option>Banco de Chile</option>
-                <option>BCI</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label for="nuevo-tipoCuenta">Tipo de Cuenta</label>
-            <select class="form-control" id="nuevo-tipoCuenta">
-                <option value="">Seleccione...</option>
-                <option>Cuenta Corriente</option>
-                <option>Cuenta Vista</option>
-                <option>Cuenta Rut</option>
-                <option>Chequera Electrónica</option>
-            </select>
-          </div>
+      <div
+        class="alert alert-success d-none"
+        role="alert"
+        id="transfer-alert"
+      ></div>
 
-          <div class="form-group">
-            <label for="nuevo-cbu">CBU / Nro Cuenta</label>
-            <input type="number" class="form-control" id="nuevo-cbu" required>
-          </div>
-        </form>
+      <div class="form-group mb-3">
+        <label for="searchContact"
+          >Buscar en la agenda de transferencias:</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="searchContact"
+          placeholder="Search contact"
+        />
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success" id="btn-guardar-contacto">Guardar Contacto</button>
-      
-      <div class="alert alert-success d-none" role="alert" id="contacto-alert"></div>
-    </div>
-    </div>
-  </div>
-</div>
+
+      <button
+        type="button"
+        class="btn btn-outline-success"
+        data-toggle="modal"
+        data-target="#modalNuevoContacto"
+      >
+        Agregar nuevo contacto
+      </button>
+
+      <h3 class="my-3">Contactos</h3>
+
+      <div class="accordion" id="listaContactosAccordion"></div>
+
+      <div class="form-group my-3 d-flex flex-column flex-md-row">
+        <a href="menu.html" class="btn btn-luka mb-2 mb-md-0 mr-md-2"
+          >Volver al Menú Principal</a
+        >
+      </div>
+      <div
+        class="modal fade"
+        id="modalNuevoContacto"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modalNuevoContactoLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalNuevoContactoLabel">
+                Nuevo Contacto
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div id="contacto-alert" class="alert d-none" role="alert"></div>
+
+              <form id="form-nuevo-contacto">
+                <div class="form-group">
+                  <label for="nuevo-nombre">Nombre Completo</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nuevo-nombre"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="nuevo-alias">Alias</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nuevo-alias"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="nuevo-banco">Banco</label>
+                  <select class="form-control" id="nuevo-banco">
+                    <option value="">Seleccione...</option>
+                    <option>Banco Estado</option>
+                    <option>Banco Santander</option>
+                    <option>Banco Falabella</option>
+                    <option>Banco de Chile</option>
+                    <option>BCI</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="nuevo-tipoCuenta">Tipo de Cuenta</label>
+                  <select class="form-control" id="nuevo-tipoCuenta">
+                    <option value="">Seleccione...</option>
+                    <option>Cuenta Corriente</option>
+                    <option>Cuenta Vista</option>
+                    <option>Cuenta Rut</option>
+                    <option>Chequera Electrónica</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="nuevo-cbu">CBU / Nro Cuenta</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="nuevo-cbu"
+                    required
+                  />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                class="btn btn-success"
+                id="btn-guardar-contacto"
+              >
+                Guardar Contacto
+              </button>
+
+              <div
+                class="alert alert-success d-none"
+                role="alert"
+                id="contacto-alert"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
-<footer class="footer">
-    <p>© 2026 - Creado por <strong>Nicole Fernández</strong></p>
-</footer>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-<script type="module" src="assets/js/script.js"></script>
-
-</body>
+    <footer class="footer">
+      <p>© 2026 - Creado por <strong>Nicole Fernández</strong></p>
+    </footer>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="assets/js/script.js"></script>
+  </body>
 </html>

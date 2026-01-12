@@ -1,47 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">    <title>Wallet</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>Wallet</title>
+    <link rel="shortcut icon" href="assets/img/lukapp-icono.png" type="image/x-icon">
+    <title>LukApp Wallet</title>
 </head>
+
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-bg-custom">
-  <a class="navbar-brand" href="index.html">
-    <img src="assets/img/lukapp-logo3.png" height="48" class="d-inline-block align-top" alt="">
-  </a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-bg-custom">
+        <a class="navbar-brand" href="index.html">
+            <img src="assets/img/lukapp-logo3.png" height="48" class="d-inline-block align-top" alt="">
+        </a>
+    </nav>
+    <main class="container mx-auto p-4 shadow p-3 my-5 bg-white rounded main-container">
+        <h2 class="my-4 pb-2 border-bottom border-primary-subtle">Inicio de sesión</h2>
+        <form id="login-form" class="position-relative">
+            <div class="form-group mb-3">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control border-primary-subtle" id="email"
+                    placeholder="ejemplo@correo.com">
+            </div>
+            <div class="form-group mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control border-primary-subtle" id="password"
+                    placeholder="Contraseña">
+            </div>
+            <div class="form-group mb-3 d-grid d-md-flex flex-wrap links-buttons-group">
+                <button type="submit" class="btn btn-primary btn-grad">Iniciar sesión</button>
+            </div>
 
+            <div class="alert alert-success d-none" role="alert" id="login-alert">
 
-    </ul>
-  </div>
-</nav>
-<main class="container mx-auto p-4 shadow p-3 my-5 bg-white rounded main-container">
-    <h2 class="my-4 pb-2 border-bottom border-primary-subtle">Inicio de sesión</h2>
-    <form id="login-form" class="position-relative">
-        <div class="form-group mb-3">
-            <label for="email" class="form-label">Correo electrónico</label>
-            <input type="email" class="form-control border-primary-subtle" id="email" placeholder="ejemplo@correo.com">
-        </div>
-        <div class="form-group mb-3">
-            <label for="password" class="form-label">Contraseña</label>
-            <input type="password" class="form-control border-primary-subtle" id="password" placeholder="Contraseña">
-        </div>
-        <div class="form-group mb-3 d-grid d-md-flex flex-wrap links-buttons-group">
-            <button type="submit" class="btn btn-primary btn-grad">Iniciar sesión</button>
-        </div>
+            </div>
+        </form>
+    </main>
+    <footer class="footer">
+        <p>© 2026 - Creado por <strong>Nicole Fernández</strong></p>
+    </footer>
 
-        <div class="alert alert-success d-none" role="alert" id="login-alert">
-            
-        </div>  
-    </form>
-</main>
-<footer class="footer">
-    <p>© 2026 - Creado por <strong>Nicole Fernández</strong></p>
-</footer>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-<script type="module" src="assets/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+    <script type="module" src="assets/js/script.js"></script>
 </body>
+
 </html>
