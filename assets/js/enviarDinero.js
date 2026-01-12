@@ -9,6 +9,15 @@ export function iniciarGestorDeTransferencias() {
     saldoActualizado();
     $('#btn-confirmar-envio').off('click').on('click', confirmarTransaccion);
     $('#btn-guardar-contacto').off('click').on('click', guardarContactoUsuario);
+    $('#searchContact').on('keyup', function() {
+        const terminoBusqueda = $(this).val().toLowerCase();
+        const todosLosContactos = obtenerContactos();
+        const contactosFiltrados = todosLosContactos.filter(contacto => {
+            return contacto.nombre.toLowerCase().includes(terminoBusqueda) || 
+                   contacto.alias.toLowerCase().includes(terminoBusqueda);
+        });
+        extraerContactos(contactosFiltrados);
+    });
 }
 
 function guardarContactoUsuario() {
@@ -43,11 +52,15 @@ const nombre = $('#nuevo-nombre').val().trim();
     $('#form-nuevo-contacto')[0].reset();
 }
 
-export function extraerContactos() {
+export function extraerContactos(listaParaMostrar = null) {
     let contenedor = $('#listaContactosAccordion');
        
     contenedor.empty();
-    const lista = obtenerContactos()
+    const lista = listaParaMostrar || obtenerContactos();
+    if (lista.length === 0) {
+        contenedor.html('<div class="alert alert-warning text-center">No se encontraron contactos.</div>');
+        return;
+    }
     lista.forEach((contacto, index) => {
         const headingId = `heading-${index}`;
         const collapseId = `collapse-${index}`;

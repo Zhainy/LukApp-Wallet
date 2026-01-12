@@ -40,7 +40,7 @@ h1 {
     border-color: #8647cf !important;
 }
 .main-container {
-    max-height: 90vh;
+    max-height: auto;
     width: 100%;        
     margin-left: auto; 
     margin-right: auto;
